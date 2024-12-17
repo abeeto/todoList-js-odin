@@ -1,2 +1,3 @@
-import { Task } from "./Task";
-import Broadcast from "./Broadcast";
+import CreateTaskForm from "./CreateTaskForm";
+const bodyNode = document.querySelector("body");
+bodyNode.appendChild(CreateTaskForm);

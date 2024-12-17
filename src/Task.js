@@ -14,4 +14,8 @@ export class Task {
         this.#id = uuidv4();
         console.log(Broadcast.relayTaskCreated(this.#id));
     }
+
+    toString() {
+        return `ID: ${this.#id} NAME: ${this.#name} DESC: ${this.#description} DUE: ${this.#dueDate} PRIORITY: ${this.#priority}`
+    }
 }
