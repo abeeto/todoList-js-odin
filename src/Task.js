@@ -1,4 +1,5 @@
 import { v4 as uuidv4} from "uuid";
+import Broadcast from "./Broadcast.js"
 export class Task {
     #name;
     #description;
@@ -11,10 +12,6 @@ export class Task {
         this.#dueDate = dueDate;
         this.#priority = priority;
         this.#id = uuidv4();
-        this.relayTaskCreation();
-    }
-
-    relayTaskCreation() {
-        console.log(`A task has been created! ID: ${this.#id}`);
+        console.log(Broadcast.relayTaskCreated(this.#id));
     }
 }
