@@ -12,5 +12,4 @@ export default function createTaskIntoProject() {
     // TODO: Insert into existing or new project.
     const newProject = new Project(projectName);
     pubsub.publish("createTaskToProject", {taskObject, projectName});
-    // TODO: make project subscribe to the task
 }

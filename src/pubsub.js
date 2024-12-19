@@ -1,8 +1,5 @@
 
 export const pubsub = {
-    // subscribers: subscribe to event e.g. "createTask"
-    // whenever createTask is ran, it should publish - e.g. pubsub.publish("createTask", () => new Task({formDataEntries}).toString())
-    // all objects subscribed to "createTask", will receive the object of interest. Will see if they are the project selected. If not, just ignore, else add task.
     events: {},
     subscribe: function(eventName, fn) {
         this.events[eventName] = this.events[eventName] || [];

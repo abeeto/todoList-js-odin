@@ -15,6 +15,7 @@ export default class Project {
     }
 
     addTaskToProject({taskObject, projectName}) {
+        // TODO: make project subscribe to the taskChangeEvent so it updates if task changes
         if (projectName === this.#name){
             console.log(taskObject.toString());
             this.#taskMap.set(taskObject.getId(), taskObject);
