@@ -9,7 +9,7 @@ export default function createTaskIntoProject() {
     const taskUserValuesObject = Object.fromEntries(formDataObject.entries());
     const {projectName} = Object.fromEntries(formDataObject.entries());
     const taskObject = new Task(taskUserValuesObject);
-    // TODO: Insert into existing or new project.
+    
     projects.createProjectIfNewName(projectName);
     pubsub.publish("createTaskToProject", {taskObject, projectName});
 }
