@@ -10,7 +10,7 @@ export default class Project {
         pubsub.subscribe("createTaskToProject", this.addTaskToProject.bind(this));
     }
 
-    get name() {
+    getName() {
         return this.#name;
     }
 

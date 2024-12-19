@@ -1,5 +1,5 @@
 import Task  from "./Task";
-import Project from "./Project";
+import projects from "./ProjectsList";
 import { pubsub } from "./pubsub";
 
 export default function createTaskIntoProject() {
@@ -10,6 +10,6 @@ export default function createTaskIntoProject() {
     const {projectName} = Object.fromEntries(formDataObject.entries());
     const taskObject = new Task(taskUserValuesObject);
     // TODO: Insert into existing or new project.
-    const newProject = new Project(projectName);
+    projects.createProjectIfNewName(projectName);
     pubsub.publish("createTaskToProject", {taskObject, projectName});
 }
