@@ -1,4 +1,5 @@
-import createTask from "./createTask";
+import createTaskIntoProject from "./createTaskIntoProject";
+// TODO: clean up
 function createTaskForm() {
     const parentNode = document.createElement("div");
     parentNode.classList.add("#task-form-wrapper");
@@ -39,16 +40,20 @@ function createTaskForm() {
     formNode.appendChild(descriptionTextArea);
 
     const dueDateLabel = createLabelNode("dueDate", "Due Date:");
-    const dueDateInput = createInputNode({fieldName: "dueDate", inputType: "date"})
+    const dueDateInput = createInputNode({fieldName: "dueDate", inputType: "date"});
 
     formNode.appendChild(dueDateLabel);
     formNode.appendChild(dueDateInput);
 
-    const priorityLabel = createLabelNode("priority", "Priority:")
-    const priorityInput = createInputNode({fieldName: "priority", inputType: "text"})
+    const priorityLabel = createLabelNode("priority", "Priority:");
+    const priorityInput = createInputNode({fieldName: "priority", inputType: "text"});
     formNode.appendChild(priorityLabel);
     formNode.appendChild(priorityInput);
 
+    const projectSelectLabel = createLabelNode("projectName", "Project:");
+    const projectSelectInput = createInputNode({fieldName: "projectName", inputType: "text"});
+    formNode.appendChild(projectSelectLabel);
+    formNode.appendChild(projectSelectInput);
 
     const submitButton = document.createElement("input");
     submitButton.setAttribute("type", "submit");
@@ -58,7 +63,7 @@ function createTaskForm() {
 
     formNode.addEventListener("submit", (event) => {
         event.preventDefault();
-        createTask();
+        createTaskIntoProject();
     })
     return parentNode;
 }
