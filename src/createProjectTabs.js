@@ -1,7 +1,7 @@
 import projects from "./ProjectsList";
 import { pubsub } from "./pubsub";
-function createProjectTabs() {
 
+function createProjectTabs() {
     const projectTabHolderNode = document.createElement("div");
     projectTabHolderNode.classList.add("project-tabs-wrapper");
 
