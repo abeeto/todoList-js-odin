@@ -6,7 +6,10 @@ export default function createTaskIntoProject() {
     const formDataObject= new FormData(form);
 
     const taskUserValuesObject = Object.fromEntries(formDataObject.entries());
-    const {projectName} = Object.fromEntries(formDataObject.entries());
+    let {projectName} = Object.fromEntries(formDataObject.entries());
+    if (projectName === "") {
+        projectName = "All Projects";
+    }
     const taskObject = new Task(taskUserValuesObject);
     
     pubsub.publish("potentialNewProject", projectName);
