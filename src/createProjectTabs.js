@@ -1,9 +1,11 @@
 import projects from "./ProjectsList";
 import { pubsub } from "./pubsub";
+import { renderTasks } from "./createTaskViewByProject";
 
 function createProjectTabs() {
     const projectTabHolderNode = document.createElement("div");
     projectTabHolderNode.classList.add("project-tabs-wrapper");
+    projectTabHolderNode.addEventListener("click", (e) => renderTasks(e.target.innerText));
 
     const renderProjectTab = (name) => {
         const projectTab = document.createElement("div");

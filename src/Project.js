@@ -6,7 +6,7 @@ export default class Project {
     constructor(projectName) {
         this.#name = projectName;
         this.#taskMap = new Map();
-        console.log(`Created ${this.#name}`);
+        console.log(`Created Project: ${this.#name}`);
         pubsub.subscribe("createTaskToProject", this.addTaskToProject.bind(this));
     }
 
@@ -14,10 +14,18 @@ export default class Project {
         return this.#name;
     }
 
+    getAllTasks() {
+        let tasks = [];
+        for (const [key, value] of this.#taskMap) {
+            tasks.push(value);
+        }
+        console.log(tasks);
+        return tasks;
+    }
+
     addTaskToProject({taskObject, projectName}) {
         // TODO: make project subscribe to the taskChangeEvent so it updates if task changes
         if (projectName === this.#name){
-            console.log(taskObject.toString());
             this.#taskMap.set(taskObject.getId(), taskObject);
             console.log(Object.fromEntries(this.#taskMap));
         }

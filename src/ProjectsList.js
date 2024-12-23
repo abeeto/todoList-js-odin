@@ -8,6 +8,9 @@ const ProjectsList = function() {
         return JSON.parse(JSON.stringify(projectObjects))
     }
     const getAllNamesOfProjects = () => Object.keys(projectObjects);
+    
+    const getAllTasksOfProject = (name) => projectObjects[name].getAllTasks();
+    
     const createProjectIfNewName = function(name) { 
         if (projectObjects[name] === undefined) {
             console.log("This is a new name!");
@@ -16,7 +19,7 @@ const ProjectsList = function() {
         } 
     }
     pubsub.subscribe("potentialNewProject", createProjectIfNewName);
-    return {getProjectsObjectsCopy, getAllNamesOfProjects}
+    return {getProjectsObjectsCopy, getAllNamesOfProjects, getAllTasksOfProject}
 }
 
 export default new ProjectsList();

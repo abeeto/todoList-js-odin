@@ -17,6 +17,18 @@ export default class Task {
         return this.#id;
     }
 
+    getName() {
+        return this.#name;
+    }
+
+    getDescription() {
+        return this.#description;
+    }
+
+    getDueDate() {
+        return this.#dueDate;
+    }
+
     toString() {
         return `ID: ${this.#id} NAME: ${this.#name} DESC: ${this.#description} DUE: ${this.#dueDate} PRIORITY: ${this.#priority}`
     }
