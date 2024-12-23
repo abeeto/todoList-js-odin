@@ -11,4 +11,5 @@ export default function createTaskIntoProject() {
     
     pubsub.publish("potentialNewProject", projectName);
     pubsub.publish("createTaskToProject", {taskObject, projectName});
+    pubsub.publish("createTaskToProject", {taskObject, projectName: "All Projects"});
 }
