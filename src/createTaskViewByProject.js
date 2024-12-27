@@ -34,7 +34,14 @@ function renderTask(taskObj){
         taskHolderNode.classList.toggle("task-done");
         taskDoneButton.innerText = taskObj.getIsDone() ? "To Do" : "Done";
     })
+    const deleteTaskButton = document.createElement("button");
+    deleteTaskButton.innerText = "Delete";
+    deleteTaskButton.addEventListener("click", (e) => {
+        pubsub.publish("deleteTaskIfPresent", {taskObj});
+    })
+
     taskHolderNode.appendChild(taskDoneButton);
+    taskHolderNode.appendChild(deleteTaskButton);
     return taskHolderNode;
 }
 
@@ -45,6 +52,7 @@ export const renderTasks = function(projectName) {
     taskViewHolderNode.replaceChildren(...taskNodesToAppend);
     pubsub.subscribe("createTaskToProject", renderTasks.bind(null, projectName));
     pubsub.subscribe("anyChangeInTask", renderTasks.bind(null, projectName));
+    pubsub.subscribe("deleteTaskIfPresent", renderTasks.bind(null, projectName));
 }
 
 

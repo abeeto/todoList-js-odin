@@ -8,6 +8,7 @@ export default class Project {
         this.#taskMap = new Map();
         console.log(`Created Project: ${this.#name}`);
         pubsub.subscribe("createTaskToProject", this.addTaskToProject.bind(this));
+        pubsub.subscribe("deleteTaskIfPresent", this.removeTaskFromProject.bind(this));
     }
 
     getName() {
@@ -24,10 +25,15 @@ export default class Project {
     }
 
     addTaskToProject({taskObject, projectName}) {
-        // TODO: make project subscribe to the taskChangeEvent so it updates if task changes
         if (projectName === this.#name){
             this.#taskMap.set(taskObject.getId(), taskObject);
             console.log(Object.fromEntries(this.#taskMap));
+        }
+    }
+
+    removeTaskFromProject({taskObj}) {
+        if (this.#taskMap.has(taskObj.getId())){
+            this.#taskMap.delete(taskObj.getId());
         }
     }
 }
