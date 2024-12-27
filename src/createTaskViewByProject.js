@@ -13,12 +13,28 @@ function getTaskViewHolderNode(){
 function renderTask(taskObj){
     const taskHolderNode = document.createElement("div");
     taskHolderNode.classList.add("task-wrapper");
-    const taskInfoItems= [taskObj.getName(), taskObj.getDescription(), taskObj.getDueDate()]
-    taskInfoItems.forEach(infoItem => {
+    if (taskObj.getIsDone()) {
+        taskHolderNode.classList.add("task-done");
+    }
+    const taskInfoItems= [taskObj.getName(), taskObj.getDescription(), taskObj.getDueDate()];
+    const taskInfoSetters = [taskObj.setName, taskObj.setDescription, taskObj.setDueDate];
+    for (let i = 0; i < taskInfoItems.length; i++){
         let infoNode = document.createElement("div");
-        infoNode.innerText = infoItem;
+        infoNode.innerText = taskInfoItems[i];
+        infoNode.addEventListener("dblclick", (e) => {
+            taskInfoSetters[i].bind(taskObj)(prompt("enter your property"));
+        })
         taskHolderNode.appendChild(infoNode);
-    });
+    }
+    const taskDoneButton = document.createElement("button");
+    taskDoneButton.innerText = taskObj.getIsDone() ? "To Do" : "Done";
+
+    taskDoneButton.addEventListener("click", e => {
+        taskObj.toggleIsDone();
+        taskHolderNode.classList.toggle("task-done");
+        taskDoneButton.innerText = taskObj.getIsDone() ? "To Do" : "Done";
+    })
+    taskHolderNode.appendChild(taskDoneButton);
     return taskHolderNode;
 }
 
@@ -28,6 +44,7 @@ export const renderTasks = function(projectName) {
     const taskNodesToAppend = tasksToRender.map(task => renderTask(task));
     taskViewHolderNode.replaceChildren(...taskNodesToAppend);
     pubsub.subscribe("createTaskToProject", renderTasks.bind(null, projectName));
+    pubsub.subscribe("anyChangeInTask", renderTasks.bind(null, projectName));
 }
 
 

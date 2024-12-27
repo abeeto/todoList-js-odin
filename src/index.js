@@ -2,6 +2,7 @@ import CreateTaskForm from "./CreateTaskForm";
 import projectTabHolderNode from "./createProjectTabs";
 import { pubsub } from "./pubsub";
 import { renderTasks } from "./createTaskViewByProject";
+import './style.css';
 
 const bodyNode = document.querySelector("body");
 
