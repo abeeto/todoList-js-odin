@@ -10,6 +10,10 @@ const ProjectsList = function() {
     const getAllNamesOfProjects = () => Object.keys(projectObjects);
     
     const getAllTasksOfProject = (name) => projectObjects[name].getAllTasks();
+
+    const addTaskToProject = ({taskObj, projectName}) => {
+        projectObjects[projectName].addTask(taskObj)
+    };
     
     const createProjectIfNewName = function(name) { 
         if (projectObjects[name] === undefined) {
@@ -17,8 +21,10 @@ const ProjectsList = function() {
             projectObjects[name] = new Project(name);
         } 
     }
+    const isEmpty = () => Object.keys(projectObjects).length === 0;
     pubsub.subscribe("potentialNewProject", createProjectIfNewName);
-    return {getProjectsObjectsCopy, getAllNamesOfProjects, getAllTasksOfProject}
+    pubsub.subscribe("addTaskToProject", addTaskToProject);
+    return {getProjectsObjectsCopy, getAllNamesOfProjects, getAllTasksOfProject, isEmpty}
 }
 
 export default new ProjectsList();

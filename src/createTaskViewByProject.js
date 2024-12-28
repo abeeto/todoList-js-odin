@@ -45,12 +45,9 @@ function renderTask(taskObj){
     return taskHolderNode;
 }
 
-export const renderTasks = function(projectName) {
+export default function createTaskView({projectName}) {
     const taskViewHolderNode = getTaskViewHolderNode(); 
     const tasksToRender = ProjectsList.getAllTasksOfProject(projectName);
     const taskNodesToAppend = tasksToRender.map(task => renderTask(task));
     taskViewHolderNode.replaceChildren(...taskNodesToAppend);
-    pubsub.subscribe("createTaskToProject", renderTasks.bind(null, projectName));
-    pubsub.subscribe("anyChangeInTask", renderTasks.bind(null, projectName));
-    pubsub.subscribe("deleteTaskIfPresent", renderTasks.bind(null, projectName));
 }

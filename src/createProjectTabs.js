@@ -1,11 +1,15 @@
 import projects from "./ProjectsList";
 import { pubsub } from "./pubsub";
-import { renderTasks } from "./createTaskViewByProject";
+import createTaskView from './createTaskViewByProject';
 
 function createProjectTabs() {
     const projectTabHolderNode = document.createElement("div");
     projectTabHolderNode.classList.add("project-tabs-wrapper");
-    projectTabHolderNode.addEventListener("click", (e) => renderTasks(e.target.innerText));
+    projectTabHolderNode.addEventListener("click", (e) => {
+        const projectName = e.target.innerText;
+        createTaskView({projectName});
+        activeTaskView(projectName);
+    });
 
     const renderProjectTab = (name) => {
         const projectTab = document.createElement("div");
