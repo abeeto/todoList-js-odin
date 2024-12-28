@@ -54,8 +54,3 @@ export const renderTasks = function(projectName) {
     pubsub.subscribe("anyChangeInTask", renderTasks.bind(null, projectName));
     pubsub.subscribe("deleteTaskIfPresent", renderTasks.bind(null, projectName));
 }
-
-
-
-
-

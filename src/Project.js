@@ -27,8 +27,7 @@ export default class Project {
     addTaskToProject({taskObject, projectName}) {
         if (projectName === this.#name){
             this.#taskMap.set(taskObject.getId(), taskObject);
-            console.log(Object.fromEntries(this.#taskMap));
-        }
+       }
     }
 
     removeTaskFromProject({taskObj}) {

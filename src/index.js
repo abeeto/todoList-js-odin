@@ -8,5 +8,5 @@ const bodyNode = document.querySelector("body");
 bodyNode.appendChild(CreateTaskForm);
 bodyNode.appendChild(projectTabHolderNode);
 
-pubsub.publish("potentialNewProject", "All Projects")
-renderTasks("All Projects");
+// pubsub.publish("potentialNewProject", "All Projects")
+// renderTasks("All Projects");

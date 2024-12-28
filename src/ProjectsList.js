@@ -15,7 +15,6 @@ const ProjectsList = function() {
         if (projectObjects[name] === undefined) {
             console.log("This is a new name!");
             projectObjects[name] = new Project(name);
-            console.log(projectObjects);
         } 
     }
     pubsub.subscribe("potentialNewProject", createProjectIfNewName);
