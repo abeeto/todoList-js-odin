@@ -14,7 +14,6 @@ const ProjectsList = function() {
     const addTaskToProject = ({taskObj, projectName}) => {
         projectObjects[projectName].addTask(taskObj)
     };
-    
     const createProjectIfNewName = function(name) { 
         if (projectObjects[name] === undefined) {
             console.log("This is a new name!");
@@ -24,6 +23,7 @@ const ProjectsList = function() {
     const isEmpty = () => Object.keys(projectObjects).length === 0;
     pubsub.subscribe("potentialNewProject", createProjectIfNewName);
     pubsub.subscribe("addTaskToProject", addTaskToProject);
+
     return {getProjectsObjectsCopy, getAllNamesOfProjects, getAllTasksOfProject, isEmpty}
 }
 

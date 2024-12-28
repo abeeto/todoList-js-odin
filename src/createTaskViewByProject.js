@@ -10,7 +10,7 @@ function getTaskViewHolderNode(){
     return taskViewHolderNode;
 }
 
-function renderTask(taskObj){
+function renderTask({taskObj, projectName}){
     const taskHolderNode = document.createElement("div");
     taskHolderNode.classList.add("task-wrapper");
     if (taskObj.getIsDone()) {
@@ -23,6 +23,7 @@ function renderTask(taskObj){
         infoNode.innerText = taskInfoItems[i];
         infoNode.addEventListener("dblclick", (e) => {
             taskInfoSetters[i].bind(taskObj)(prompt("enter your property"));
+            createTaskView(projectName);
         })
         taskHolderNode.appendChild(infoNode);
     }
@@ -38,6 +39,7 @@ function renderTask(taskObj){
     deleteTaskButton.innerText = "Delete";
     deleteTaskButton.addEventListener("click", (e) => {
         pubsub.publish("deleteTaskIfPresent", {taskObj});
+        createTaskView(projectName);
     })
 
     taskHolderNode.appendChild(taskDoneButton);
@@ -45,9 +47,9 @@ function renderTask(taskObj){
     return taskHolderNode;
 }
 
-export default function createTaskView({projectName}) {
+export default function createTaskView(projectName) {
     const taskViewHolderNode = getTaskViewHolderNode(); 
     const tasksToRender = ProjectsList.getAllTasksOfProject(projectName);
-    const taskNodesToAppend = tasksToRender.map(task => renderTask(task));
+    const taskNodesToAppend = tasksToRender.map(taskObj => renderTask({taskObj, projectName}));
     taskViewHolderNode.replaceChildren(...taskNodesToAppend);
 }

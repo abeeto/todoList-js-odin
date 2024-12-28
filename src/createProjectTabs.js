@@ -7,8 +7,7 @@ function createProjectTabs() {
     projectTabHolderNode.classList.add("project-tabs-wrapper");
     projectTabHolderNode.addEventListener("click", (e) => {
         const projectName = e.target.innerText;
-        createTaskView({projectName});
-        activeTaskView(projectName);
+        createTaskView(projectName);
     });
 
     const renderProjectTab = (name) => {
