@@ -6,6 +6,7 @@ function createTaskForm() {
 
     const formNode = document.createElement("form");
     formNode.id = "task-form";
+    parentNode.classList.add("lato-regular");
     parentNode.appendChild(formNode);
     const fieldsetNode = document.createElement("fieldset");
     fieldsetNode.innerText = "Create Task";

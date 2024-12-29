@@ -6,9 +6,7 @@ export default class Project {
     constructor(projectName) {
         this.#name = projectName;
         this.#taskMap = new Map();
-        console.log(`Created Project: ${this.#name}`);
-        pubsub.subscribe("createTaskToProject", this.addTaskToProject.bind(this));
-        pubsub.subscribe("deleteTaskIfPresent", this.removeTaskFromProject.bind(this));
+        pubsub.subscribe("deleteTaskIfPresent", this.deleteTask.bind(this));
     }
 
     getName() {
@@ -20,18 +18,14 @@ export default class Project {
         for (const [key, value] of this.#taskMap) {
             tasks.push(value);
         }
-        console.log(tasks);
         return tasks;
     }
 
-    addTaskToProject({taskObject, projectName}) {
-        if (projectName === this.#name){
-            this.#taskMap.set(taskObject.getId(), taskObject);
-            console.log(Object.fromEntries(this.#taskMap));
-        }
+    addTask(taskObj) {
+        this.#taskMap.set(taskObj.getId(), taskObj);
     }
 
-    removeTaskFromProject({taskObj}) {
+    deleteTask({taskObj}) {
         if (this.#taskMap.has(taskObj.getId())){
             this.#taskMap.delete(taskObj.getId());
         }
