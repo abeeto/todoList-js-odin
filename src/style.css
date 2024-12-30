@@ -106,7 +106,7 @@
     background-color: #a44e4e;
 }
 
-.project-tabs-wrapper > div:active {
+.active-project {
     background-color: #8d3d3d;
     color: black;
 }

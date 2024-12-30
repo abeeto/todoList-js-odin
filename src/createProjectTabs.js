@@ -1,12 +1,14 @@
 import projects from "./ProjectsList";
 import { pubsub } from "./pubsub";
 import createTaskView from './createTaskViewByProject';
+import handleActiveProject from "./activeProject";
 
 function createProjectTabs() {
     const projectTabHolderNode = document.createElement("div");
     projectTabHolderNode.classList.add("project-tabs-wrapper");
     projectTabHolderNode.addEventListener("click", (e) => {
         const projectName = e.target.innerText;
+        handleActiveProject(e.target);
         createTaskView(projectName);
     });
 
@@ -14,6 +16,7 @@ function createProjectTabs() {
         const projectTab = document.createElement("div");
         projectTab.classList.add("project-tab");
         projectTab.innerText = name;
+        projectTab.dataset.projectName = name;
         return projectTab;
     }
 
