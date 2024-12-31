@@ -5,7 +5,8 @@ import handleActiveProject from "./activeProject";
 
 function createProjectTabs() {
     const projectTabHolderNode = document.createElement("div");
-    projectTabHolderNode.classList.add("project-tabs-wrapper");
+    // projectTabHolderNode.classList.add("project-tabs-wrapper");
+    projectTabHolderNode.id = "project-tabs-wrapper";
     projectTabHolderNode.addEventListener("click", (e) => {
         const projectName = e.target.innerText;
         handleActiveProject(e.target);
@@ -14,7 +15,7 @@ function createProjectTabs() {
 
     const renderProjectTab = (name) => {
         const projectTab = document.createElement("div");
-        projectTab.classList.add("project-tab");
+        // projectTab.classList.add("project-tab");
         projectTab.innerText = name;
         projectTab.dataset.projectName = name;
         return projectTab;

@@ -2,11 +2,10 @@ import createTaskIntoProject from "./createTaskIntoProject";
 // TODO: clean up
 function createTaskForm() {
     const parentNode = document.createElement("div");
-    parentNode.classList.add("task-form-wrapper");
-
+    // parentNode.classList.add("task-form-wrapper");
+    
     const formNode = document.createElement("form");
     formNode.id = "task-form";
-    parentNode.classList.add("lato-regular");
     parentNode.appendChild(formNode);
     const fieldsetNode = document.createElement("fieldset");
     fieldsetNode.innerText = "Create Task";

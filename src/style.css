@@ -1,25 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@font-face {
+  font-family: 'Afacad Flux';
+  src: url('./Afacad_Flux/AfacadFlux-VariableFont_slnt\,wght.ttf') format('truetype');
+  font-weight: 500 400 300;
+  font-style: normal;
+}
 
-.lato-light {
-    font-family: "Lato", serif;
-    font-weight: 300;
-    font-style: normal;
+@font-face {
+  font-family: "Roboto";
+  src: 
+    url("./Roboto/Roboto-Light.ttf") format("truetype"),;
+  font-weight: 300;
+  font-style: normal;
 }
-  
-.lato-regular {
-    font-family: "Lato", serif;
-    font-weight: 400;
-    font-style: normal;
+@font-face {
+  font-family: "Roboto";
+  src: 
+    url("./Roboto/Roboto-Regular.ttf") format("truetype"),;
+  font-weight: 400;
+  font-style: normal;
 }
-  
-.lato-bold {
-    font-family: "Lato", serif;
-    font-weight: 700;
-    font-style: normal;
+
+:root {
+  font-size: 16px;
+
 }
-  
-/*
-  Josh's Custom CSS Reset
+/* || Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 *, *::before, *::after {
@@ -59,65 +64,5 @@
     isolation: isolate;
   }
 
-.task-done {
-    text-decoration:line-through;
-}
-
-.main-wrapper, .task-view-wrapper {
-    margin-inline: auto;
-    max-width: 65%;
-}
-
-.main-wrapper {
-    margin-top: 5rem;
-}
-
-#task-form {
-    display: flex;
-    flex-direction: column;
-}
-#task-form > * {
-    flex: 1 0 auto;
-}
-
-.task-form-wrapper, .project-tabs-wrapper {
-    margin-top: 0.5rem;
-    padding: 0.75rem;
-    border-radius: 10px;
-    background-color: whitesmoke;
-}
-
-.project-tabs-wrapper {
-    background-color: #c15c5c;
-    display: flex;
-    justify-content: space-evenly;
-    color: white;
-    flex-wrap: wrap;
-}
-
-.project-tabs-wrapper > div {
-    padding: 0.35em 0;
-    border-radius: 4px;
-    flex: 1 0 auto;
-    text-align: center;
-}
-
-.project-tabs-wrapper > div:hover {
-    background-color: #a44e4e;
-}
-
-.active-project {
-    background-color: #8d3d3d;
-    color: black;
-}
-
-.task-wrapper {
-    margin-top: 2rem;
-    background-color: whitesmoke;
-    padding: 1rem;
-    border-radius: 8px;
-}
-
-body {
-    background-color: rgb(186, 73, 73);
-}
+/* || class selectors: block level */
+/* TODO: follow BEM notation */

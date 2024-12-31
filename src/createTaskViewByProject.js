@@ -1,10 +1,11 @@
 import ProjectsList from "./ProjectsList"; 
 import { pubsub } from "./pubsub";
 function getTaskViewHolderNode(){
-    let taskViewHolderNode = document.querySelector(".task-view-wrapper");
+    let taskViewHolderNode = document.querySelector("#task-view-wrapper");
     if (taskViewHolderNode === null) {
         taskViewHolderNode = document.createElement("div");
-        taskViewHolderNode.classList.add("task-view-wrapper");
+        taskViewHolderNode.id = "task-view-wrapper";
+        // taskViewHolderNode.classList.add("task-view-wrapper");
         document.querySelector("body").appendChild(taskViewHolderNode);
     }
     return taskViewHolderNode;
@@ -12,10 +13,10 @@ function getTaskViewHolderNode(){
 
 function renderTask({taskObj, projectName}){
     const taskHolderNode = document.createElement("div");
-    taskHolderNode.classList.add("task-wrapper");
-    if (taskObj.getIsDone()) {
-        taskHolderNode.classList.add("task-done");
-    }
+    // taskHolderNode.classList.add("task-wrapper");
+    // if (taskObj.getIsDone()) {
+    //     taskHolderNode.classList.add("task-done");
+    // }
     const taskInfoItems= [taskObj.getName(), taskObj.getDescription(), taskObj.getDueDate()];
     const taskInfoSetters = [taskObj.setName, taskObj.setDescription, taskObj.setDueDate];
     for (let i = 0; i < taskInfoItems.length; i++){
@@ -32,7 +33,7 @@ function renderTask({taskObj, projectName}){
 
     taskDoneButton.addEventListener("click", e => {
         taskObj.toggleIsDone();
-        taskHolderNode.classList.toggle("task-done");
+        // taskHolderNode.classList.toggle("task-done");
         taskDoneButton.innerText = taskObj.getIsDone() ? "To Do" : "Done";
     })
     const deleteTaskButton = document.createElement("button");

@@ -22,7 +22,7 @@ export default function createTaskIntoProject() {
     pubsub.publish("addTaskToProject", {taskObj, projectName: "All Projects"});
     createTaskView(projectName);
 
-    const projectTabsHolderNode = document.querySelector(".project-tabs-wrapper");
+    const projectTabsHolderNode = document.querySelector("#project-tabs-wrapper");
     const allProjects = Array.from(projectTabsHolderNode.children)
     const rightProjectTab = allProjects.filter((child) => child.dataset.projectName === projectName);
     console.log(rightProjectTab);
