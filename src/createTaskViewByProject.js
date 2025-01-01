@@ -74,7 +74,10 @@ function renderTask({taskObj, projectName}){
         return button;
     }
     const updateTaskActionNodes = document.createElement("div");
-    const deleteTaskButton = createButton("Delete Task", () => {});
+    const deleteTaskButton = createButton("Delete Task", () => {
+        pubsub.publish("deleteTaskIfPresent", taskObj);
+        createTaskView(projectName);
+    });
     const editTaskButton = createButton("Edit Task", () => {});
 
 
@@ -95,8 +98,8 @@ function renderTask({taskObj, projectName}){
     taskActionsNode.appendChild(updateTaskActionNodes);
 
     taskInfoItemsHolder.appendChild(taskTitleInfoNode);
-    taskInfoItemsHolder.appendChild(taskDescInfoNode);
     taskInfoItemsHolder.appendChild(taskDueInfoNode);
+    taskInfoItemsHolder.appendChild(taskDescInfoNode);
     taskInfoItemsHolder.appendChild(taskActionsNode);
 
     taskHolderNode.appendChild(toggleTaskDoneButtonNode);

@@ -25,7 +25,7 @@ export default class Project {
         this.#taskMap.set(taskObj.getId(), taskObj);
     }
 
-    deleteTask({taskObj}) {
+    deleteTask(taskObj) {
         if (this.#taskMap.has(taskObj.getId())){
             this.#taskMap.delete(taskObj.getId());
         }
