@@ -3,18 +3,20 @@ import ElementsHelper from "./ElementsHelper";
 
 function createTaskForm() {
     const parentNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["wrapper", "flow-y-bottom"]});
-
-    const formNode = document.createElement("form");
-    formNode.id = "task-form";
+    const formNode = ElementsHelper.createGenericElement({
+        elementTagName: "form",
+        attributesMap: {"id": "task-form"},
+    })
     parentNode.appendChild(formNode);
       
     const nameLabel = ElementsHelper.createLabelElement("name", "Name:");
     const nameInput = ElementsHelper.createInputElement({fieldName: "name", inputType: "text"});
 
     const descriptionLabel = ElementsHelper.createLabelElement("description", "Description:");
-    const descriptionTextArea = document.createElement("textarea");
-    descriptionTextArea.setAttribute("name", "description");
-    descriptionTextArea.setAttribute("id", "form-description");
+    const descriptionTextArea = ElementsHelper.createGenericElement({
+        elementTagName: "textarea",
+        attributesMap: {"name": "description", "id": "form-description"},
+    })
 
     const dueDateLabel = ElementsHelper.createLabelElement("dueDate", "Due Date:");
     const dueDateInput = ElementsHelper.createInputElement({fieldName: "dueDate", inputType: "date"});
@@ -25,10 +27,10 @@ function createTaskForm() {
     const projectSelectLabel = ElementsHelper.createLabelElement("projectName", "Project:");
     const projectSelectInput = ElementsHelper.createInputElement({fieldName: "projectName", inputType: "text"});
 
-
-    const submitButton = document.createElement("input");
-    submitButton.setAttribute("type", "submit");
-    submitButton.setAttribute("value", "Submit");
+    const submitButton = ElementsHelper.createGenericElement({
+        elementTagName: "input",
+        attributesMap: {"type": "Submit", "value": "Submit"},
+    })
 
     formNode.replaceChildren(...[ nameLabel, nameInput, descriptionLabel, descriptionTextArea, dueDateLabel, dueDateInput, priorityLabel, priorityInput, projectSelectLabel, projectSelectInput, submitButton]);
 

@@ -1,4 +1,5 @@
 import createTaskView from "./createTaskViewByProject";
+import ElementsHelper from "./ElementsHelper";
 export default function createEditableTaskView({taskObj, projectName}) {
     // take info out of the taskObj, return all of it as a form
     let taskInfoEditableItemsHolder = document.createElement("form");
@@ -10,17 +11,19 @@ export default function createEditableTaskView({taskObj, projectName}) {
 
     const taskInfoItemsFormInputs = [];
     for (let i = 0; i < taskInfoItems.length; i++) {
-        const inputItem = document.createElement("input");
-        inputItem.value = taskInfoItems[i];
-        inputItem.type = "text";
-        inputItem.name = taskInfoItemsFormObjectNames[i];
-        inputItem.classList.add("taskEditInput");
+        const inputItem = ElementsHelper.createGenericElement({
+            elementTagName: "input",
+            attributesMap: {"value": taskInfoItems[i], "type": "text", "name": taskInfoItemsFormObjectNames[i]},
+            classList: ["taskEditInput"]
+        })
         taskInfoItemsFormInputs.push(inputItem);
     }
 
-    const saveButton = document.createElement("input");
-    saveButton.type = "submit";
-    saveButton.value = "Save";
+    const saveButton = ElementsHelper.createGenericElement({
+        elementTagName: "input",
+        attributesMap: {"value": "Save", "type": "submit"},
+        classList: undefined,
+    })
     taskInfoEditableItemsHolder.replaceChildren(...taskInfoItemsFormInputs);
     taskInfoEditableItemsHolder.appendChild(saveButton);
 

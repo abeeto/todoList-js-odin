@@ -2,6 +2,7 @@ import projects from "./ProjectsList";
 import { pubsub } from "./pubsub";
 import createTaskView from './createTaskViewByProject';
 import handleActiveProject from "./activeProject";
+import ElementsHelper from "./ElementsHelper";
 
 function createProjectTabs() {
     const projectTabHolderNode = document.createElement("div");
@@ -14,10 +15,11 @@ function createProjectTabs() {
     });
 
     const renderProjectTab = (name) => {
-        const projectTab = document.createElement("div");
-        // projectTab.classList.add("project-tab");
-        projectTab.innerText = name;
-        projectTab.dataset.projectName = name;
+        const projectTab = ElementsHelper.createGenericElement({
+            elementTagName: "div",
+            innerText: name,
+            attributesMap: {"data-project-name": name},
+        })
         return projectTab;
     }
 
