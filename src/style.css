@@ -82,6 +82,7 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   margin-top: var(--600);
+  /* background-color: hsl(0, 45%, 51%); */
 }
 
 h1,
@@ -120,13 +121,13 @@ h3 {
   padding: 1rem;
   min-height: 5rem;
   background-color: hsl(0, 0%, 97%);
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px;
 }
 
 .wrapper-task::before {
   position: absolute;
   content: "";
-  background-color: rgb(87, 87, 87);
+  background-color: #c7c7c7;
   top: 0;
   left:0;
   height: 100%;
@@ -158,18 +159,22 @@ h3 {
   max-width: 100%;
 }
 
+.wrapper-task {
+  align-items: center;
+}
+
 .wrapper-task *[data-is-hidden="true"] {
   display: none;
 }
 
 .taskHeadingText {
-  font-size: 1.6rem;
-  line-height: 1.2;
+  font-size: 1.9rem;
+  line-height: 1.1;
   font-weight: 400;
 }
 
 .taskBaseText {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   font-weight: 300;
 }
@@ -183,7 +188,15 @@ h3 {
 }
 
 .task__button {
-  height: 5rem;
+  font-size: 1rem;
+}
+
+.task__button_toDo {
+  height: 50px;
+  width: 50px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .task__button_toDo[data-is-done="true"]{

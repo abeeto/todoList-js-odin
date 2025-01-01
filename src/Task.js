@@ -58,6 +58,10 @@ export default class Task {
         return this.#priority;
     }
 
+    setPriority(priority) {
+        this.#priority = priority;
+    }
+
     toString() {
         return `ID: ${this.#id} NAME: ${this.#name} DESC: ${this.#description} DUE: ${this.#dueDate} PRIORITY: ${this.#priority}`
     }
