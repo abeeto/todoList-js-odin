@@ -1,5 +1,5 @@
 import createTaskView from "./createTaskViewByProject";
-export default function renderEditableTask({taskObj, projectName}) {
+export default function createEditableTaskView({taskObj, projectName}) {
     // take info out of the taskObj, return all of it as a form
     let taskInfoEditableItemsHolder = document.createElement("form");
     // taskInfoEditableItemsHolder.classList.add();
