@@ -37,12 +37,13 @@ export default function createTaskElement({taskObj, projectName}){
         {        
         elementTagName: "button",
         classList: ["task__button", "task__button_toDo"],
+        attributesMap: {"data-is-done": taskObj.getIsDone() ? "true" : "false"},
         clickEventCallBack: function() {
-            this.dataset.isDone =  this.dataset.isDone === "true" ? "false" : "true";
+            this.dataset.isDone =  taskObj.getIsDone() ? "false" : "true";
             taskObj.toggleIsDone(this.dataset.isDone === "true");
         }}
     )
-    
+
     let hideableNodes = [taskDescInfoNode, deleteTaskButton, editTaskButton, toggleTaskDoneButtonNode];
     hideableNodes.forEach(node => node.dataset.isHidden = "true");
     toggleTaskDoneButtonNode.dataset.isHidden = "false";

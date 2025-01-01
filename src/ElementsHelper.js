@@ -1,6 +1,6 @@
 function ElementsHelper() {
     
-    const createGenericElement = ({elementTagName, innerText, classList, clickEventCallBack}) => {
+    const createGenericElement = ({elementTagName, innerText, classList, attributesMap, clickEventCallBack}) => {
         const element = document.createElement(elementTagName);
         if (innerText){
             element.innerText = innerText;
@@ -10,6 +10,11 @@ function ElementsHelper() {
         }
         if (clickEventCallBack) {
             element.addEventListener("click", clickEventCallBack);
+        }
+        if (attributesMap) {
+            for (const [key, value] of Object.entries(attributesMap)) {
+                element.setAttribute(key, value);
+            }
         }
         return element;
     }
