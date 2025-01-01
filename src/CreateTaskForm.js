@@ -1,69 +1,45 @@
 import createTaskIntoProject from "./createTaskIntoProject";
-// TODO: clean up
+import ElementsHelper from "./ElementsHelper";
+
 function createTaskForm() {
-    const parentNode = document.createElement("div");
-    parentNode.classList.add("wrapper", "flow-y-bottom");
-    
+    const parentNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["wrapper", "flow-y-bottom"]});
+
     const formNode = document.createElement("form");
     formNode.id = "task-form";
     parentNode.appendChild(formNode);
-    const fieldsetNode = document.createElement("fieldset");
-    fieldsetNode.innerText = "Create Task";
+      
+    const nameLabel = ElementsHelper.createLabelElement("name", "Name:");
+    const nameInput = ElementsHelper.createInputElement({fieldName: "name", inputType: "text"});
 
-    const createInputNode = ({fieldName, inputType}) => {
-        const inputNode = document.createElement("input");
-        inputNode.setAttribute("type", inputType);
-        inputNode.setAttribute("name", fieldName);
-        inputNode.setAttribute("id", `form-${fieldName}`);
-        return inputNode;
-    }
-
-    const createLabelNode = (fieldName, innerText) => {
-        const labelNode = document.createElement("label");
-        labelNode.setAttribute("for",  `form-${fieldName}`);
-        labelNode.innerText = innerText;
-        return labelNode;
-    }
-        
-    const nameLabel = createLabelNode("name", "Name:");
-    const nameInput = createInputNode({fieldName: "name", inputType: "text"});
-
-    formNode.appendChild(nameLabel);
-    formNode.appendChild(nameInput);
-
-    const descriptionLabel = createLabelNode("description", "Description:");
+    const descriptionLabel = ElementsHelper.createLabelElement("description", "Description:");
     const descriptionTextArea = document.createElement("textarea");
     descriptionTextArea.setAttribute("name", "description");
     descriptionTextArea.setAttribute("id", "form-description");
 
-    formNode.appendChild(descriptionLabel);
-    formNode.appendChild(descriptionTextArea);
+    const dueDateLabel = ElementsHelper.createLabelElement("dueDate", "Due Date:");
+    const dueDateInput = ElementsHelper.createInputElement({fieldName: "dueDate", inputType: "date"});
 
-    const dueDateLabel = createLabelNode("dueDate", "Due Date:");
-    const dueDateInput = createInputNode({fieldName: "dueDate", inputType: "date"});
+    const priorityLabel = ElementsHelper.createLabelElement("priority", "Priority:");
+    const priorityInput = ElementsHelper.createInputElement({fieldName: "priority", inputType: "text"});
 
-    formNode.appendChild(dueDateLabel);
-    formNode.appendChild(dueDateInput);
+    const projectSelectLabel = ElementsHelper.createLabelElement("projectName", "Project:");
+    const projectSelectInput = ElementsHelper.createInputElement({fieldName: "projectName", inputType: "text"});
 
-    const priorityLabel = createLabelNode("priority", "Priority:");
-    const priorityInput = createInputNode({fieldName: "priority", inputType: "text"});
-    formNode.appendChild(priorityLabel);
-    formNode.appendChild(priorityInput);
-
-    const projectSelectLabel = createLabelNode("projectName", "Project:");
-    const projectSelectInput = createInputNode({fieldName: "projectName", inputType: "text"});
-    formNode.appendChild(projectSelectLabel);
-    formNode.appendChild(projectSelectInput);
 
     const submitButton = document.createElement("input");
     submitButton.setAttribute("type", "submit");
     submitButton.setAttribute("value", "Submit");
 
-    formNode.appendChild(submitButton);
+    formNode.replaceChildren(...[ nameLabel, nameInput, descriptionLabel, descriptionTextArea, dueDateLabel, dueDateInput, priorityLabel, priorityInput, projectSelectLabel, projectSelectInput, submitButton]);
 
     formNode.addEventListener("submit", (event) => {
         event.preventDefault();
         createTaskIntoProject();
+        formNode.childNodes.forEach(child => { 
+            if (child.value != "Submit") {
+                child.value = ""
+            }}
+        );
     })
     return parentNode;
 }

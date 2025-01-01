@@ -1,7 +1,7 @@
 import ProjectsList from "./ProjectsList"; 
 import { pubsub } from "./pubsub";
 import renderEditableTask from "./createEditableTaskView";
-import renderElement from "./renderElement";
+import ElementsHelper from "./ElementsHelper";
 
 function getTaskViewHolderNode(){
     let taskViewHolderNode = document.querySelector("#task-view-wrapper");
@@ -30,25 +30,20 @@ function createToggleTaskDoneButton(taskObj) {
 }
 
 function renderTask({taskObj, projectName}){
-
-
-    const taskHolderNode = renderElement({elementTagName: "div", classList: ["wrapper", "wrapper-task", "flow-y-bottom", "flex"]})
-    // if (taskObj.getIsDone()) {
-    //     taskHolderNode.classList.add("task-done");
-    // }
-    const taskInfoItemsHolder = renderElement({elementTagName: "div", classList: ["wrapper", "task__main-content", "flex", "flex-col"]})
-    const taskTitleInfoNode = renderElement({elementTagName: "div", classList: ["flex", "flex-item-grow", "taskHeadingText"], innerText: taskObj.getName()});
-    const taskDescInfoNode = renderElement({elementTagName: "div", classList: ["flex", "flex-item-grow", "taskDescription", "taskBaseText", "flow-y-bottom"], innerText: taskObj.getDescription()});
-    const taskPriorityNode = renderElement({elementTagName: "div", classList: ["flex"], innerText: "Priority: " + taskObj.getPriority().toUpperCase()});
-    const taskDueDateNode = renderElement({elementTagName: "div", classList: ["flex"], innerText: "Due Date: " + taskObj.getDueDate()});
+    const taskHolderNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["wrapper", "wrapper-task", "flow-y-bottom", "flex"]})
+    const taskInfoItemsHolder = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["wrapper", "task__main-content", "flex", "flex-col"]})
+    const taskTitleInfoNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-item-grow", "taskHeadingText"], innerText: taskObj.getName()});
+    const taskDescInfoNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-item-grow", "taskDescription", "taskBaseText", "flow-y-bottom"], innerText: taskObj.getDescription()});
+    const taskPriorityNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex"], innerText: "Priority: " + taskObj.getPriority().toUpperCase()});
+    const taskDueDateNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex"], innerText: "Due Date: " + taskObj.getDueDate()});
     
-    const taskDueInfoNode = renderElement({elementTagName: "div", classList: ["flex", "flex-space-apart", "taskBaseText", "flow-bottom-y"]});
+    const taskDueInfoNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-space-apart", "taskBaseText", "flow-bottom-y"]});
     taskDueInfoNode.appendChild(taskPriorityNode);
     taskDueInfoNode.appendChild(taskDueDateNode);
 
-    const taskActionsNode = renderElement({elementTagName: "div", classList: ["flex", "flex-space-apart", "taskBaseText", "flow-bottom-y"]})
-    const updateTaskActionNodes = renderElement({elementTagName: "div", classList: ["flex", "flow-bottom-y"]});
-    const deleteTaskButton = renderElement({
+    const taskActionsNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-space-apart", "taskBaseText", "flow-bottom-y"]})
+    const updateTaskActionNodes = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flow-bottom-y"]});
+    const deleteTaskButton = ElementsHelper.createGenericElement({
         elementTagName: "button",
         innerText: "Delete Task", 
         clickEventCallBack: () => {
@@ -57,7 +52,7 @@ function renderTask({taskObj, projectName}){
         }, 
     })
 
-    const editTaskButton = renderElement({
+    const editTaskButton = ElementsHelper.createGenericElement({
         elementTagName: "button",
         innerText: "Edit Task", 
         clickEventCallBack: () => {
@@ -73,7 +68,7 @@ function renderTask({taskObj, projectName}){
     let hideableNodes = [taskDescInfoNode, deleteTaskButton, editTaskButton, toggleTaskDoneButtonNode];
     hideableNodes.forEach(node => node.dataset.isHidden = "true");
     toggleTaskDoneButtonNode.dataset.isHidden = "false";
-    const expandButtonNode = renderElement({
+    const expandButtonNode = ElementsHelper.createGenericElement({
         elementTagName: "button",
         innerText: "Expand",
         clickEventCallBack: function() {
