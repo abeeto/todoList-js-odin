@@ -37,7 +37,7 @@ function createTaskForm() {
         createTaskIntoProject();
         formNode.childNodes.forEach(child => { 
             if (child.value != "Submit") {
-                child.value = ""
+                child.value = "";
             }}
         );
     })
