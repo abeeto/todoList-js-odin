@@ -5,7 +5,7 @@ import handleActiveProject from "./activeProject";
 
 function createProjectTabs() {
     const projectTabHolderNode = document.createElement("div");
-    // projectTabHolderNode.classList.add("project-tabs-wrapper");
+    projectTabHolderNode.classList.add("wrapper", "wrapper-projects", "flow-y-bottom");
     projectTabHolderNode.id = "project-tabs-wrapper";
     projectTabHolderNode.addEventListener("click", (e) => {
         const projectName = e.target.innerText;

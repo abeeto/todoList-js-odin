@@ -53,6 +53,11 @@ export default class Task {
     getIsDone(){
         return this.#isDone;
     }
+
+    getPriority() {
+        return this.#priority;
+    }
+
     toString() {
         return `ID: ${this.#id} NAME: ${this.#name} DESC: ${this.#description} DUE: ${this.#dueDate} PRIORITY: ${this.#priority}`
     }

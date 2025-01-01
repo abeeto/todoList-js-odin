@@ -4,7 +4,7 @@ import './style.css';
 
 const bodyNode = document.querySelector("body");
 const mainWrapperNode = document.createElement("div");
-// mainWrapperNode.classList.add("main-wrapper");
+mainWrapperNode.classList.add("wrapper");
 
 mainWrapperNode.appendChild(CreateTaskForm);
 mainWrapperNode.appendChild(projectTabHolderNode);
