@@ -38,8 +38,7 @@ function renderTask({taskObj, projectName}){
     const taskDueDateNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex"], innerText: "Due Date: " + taskObj.getDueDate()});
     
     const taskDueInfoNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-space-apart", "taskBaseText", "flow-bottom-y"]});
-    taskDueInfoNode.appendChild(taskPriorityNode);
-    taskDueInfoNode.appendChild(taskDueDateNode);
+    taskDueInfoNode.replaceChildren(...[taskPriorityNode, taskDueDateNode]);
 
     const taskActionsNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-space-apart", "taskBaseText", "flow-bottom-y"]})
     const updateTaskActionNodes = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flow-bottom-y"]});
@@ -61,8 +60,6 @@ function renderTask({taskObj, projectName}){
         }, 
     })
 
-    updateTaskActionNodes.appendChild(editTaskButton);
-    updateTaskActionNodes.appendChild(deleteTaskButton);
 
     const toggleTaskDoneButtonNode = createToggleTaskDoneButton(taskObj);
     let hideableNodes = [taskDescInfoNode, deleteTaskButton, editTaskButton, toggleTaskDoneButtonNode];
@@ -76,17 +73,11 @@ function renderTask({taskObj, projectName}){
             this.innerText = taskDescInfoNode.dataset.isHidden === "true" ? "Expand" : "Hide";
         }
     })
-
-    taskActionsNode.appendChild(expandButtonNode);
-    taskActionsNode.appendChild(updateTaskActionNodes);
-
-    taskInfoItemsHolder.appendChild(taskTitleInfoNode);
-    taskInfoItemsHolder.appendChild(taskDueInfoNode);
-    taskInfoItemsHolder.appendChild(taskDescInfoNode);
-    taskInfoItemsHolder.appendChild(taskActionsNode);
-
-    taskHolderNode.appendChild(toggleTaskDoneButtonNode);
-    taskHolderNode.appendChild(taskInfoItemsHolder);
+    
+    updateTaskActionNodes.replaceChildren(...[editTaskButton, deleteTaskButton])
+    taskActionsNode.replaceChildren(...[expandButtonNode, updateTaskActionNodes]);
+    taskInfoItemsHolder.replaceChildren(...[taskTitleInfoNode, taskDueInfoNode, taskDescInfoNode, taskActionsNode]);
+    taskHolderNode.replaceChildren(...[toggleTaskDoneButtonNode, taskInfoItemsHolder]);
     return taskHolderNode;
 }
 
