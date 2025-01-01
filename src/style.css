@@ -192,16 +192,37 @@ h3 {
 }
 
 .task__button_toDo {
+  position: relative;
   height: 50px;
   width: 50px;
   border: none;
-  background-color: transparent;
+  border-radius: 50%;
   cursor: pointer;
 }
 
+.task__button_toDo::after {
+  position: absolute;
+  top: 15%;
+  left: 35%;
+  content: "";
+  height: 30px;
+  width: 15px;
+  border: solid #f7f7f7;
+  border-width: 0 5px 5px 0;
+  transform: rotate(45deg);
+}
+
+.task__button_toDo[data-is-done="true"]:hover {
+  background-color: hsl(0, 45%, 60%);
+}
+
 .task__button_toDo[data-is-done="true"]{
-  color: green;
+  background-color: #ba4a4a;
 }
 .task__button_toDo[data-is-done="false"]{
-  color: red;
+  background-color: #9e9c9c;
+}
+
+.task__button_toDo[data-is-done="false"]:hover {
+  background-color: hsl(0, 1%, 72%);
 }
