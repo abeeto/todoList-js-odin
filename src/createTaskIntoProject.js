@@ -1,7 +1,7 @@
 import ProjectsList from "./ProjectsList";
 import Task  from "./Task";
 import { pubsub } from "./pubsub";
-import createTaskView from "./createTaskViewByProject";
+import CreateTaskViewByProject from "./CreateTaskViewByProject";
 import handleActiveProject from "./activeProject";
 
 export default function createTaskIntoProject() {
@@ -21,7 +21,7 @@ export default function createTaskIntoProject() {
     pubsub.publish("potentialNewProject", projectName);
     pubsub.publish("addTaskToProject", {taskObj, projectName});
     pubsub.publish("addTaskToProject", {taskObj, projectName: "All Projects"});
-    createTaskView(projectName);
+    CreateTaskViewByProject.createTaskView(projectName);
 
     const projectTabsHolderNode = document.querySelector("#project-tabs-wrapper");
     const allProjects = Array.from(projectTabsHolderNode.children)

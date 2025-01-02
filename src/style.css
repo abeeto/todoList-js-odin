@@ -92,12 +92,12 @@ h3 {
 }
 
 .wrapper {
-  max-width: 75rem;
+  max-width: 55rem;
   margin-inline: auto;
 }
 .wrapper-projects {
   min-height: 45px;
-  background-color: hsl(0, 45%, 56%);
+  background-color: hsl(0, 0%, 87%);
   border-radius: 4px;
   display: flex;
   flex-direction: row;
@@ -107,7 +107,7 @@ h3 {
 }
 
 .wrapper-projects > * {
-  background-color: hsl(0, 45%, 51%);
+  background-color: hsl(0, 4%, 69%);
   color: white;
   padding: 0.2rem 1rem;
   border-radius: 4px;
@@ -118,7 +118,7 @@ h3 {
 
 .wrapper-task {
   position: relative;
-  padding: 1rem;
+  padding: 1rem 2rem;
   min-height: 5rem;
   background-color: hsl(0, 0%, 97%);
   border-radius: 4px;
@@ -131,13 +131,15 @@ h3 {
   top: 0;
   left:0;
   height: 100%;
-  width: 5px;
+  width: 8px;
   border-radius: 4px 0 0 4px;
 }
 .flex-item-grow {
   flex: 1 0 auto;
 }
-
+.max-content-width {
+  width: max-content;
+}
 .flex {
   display: flex;
 }
@@ -147,11 +149,12 @@ h3 {
 .flex-space-apart {
   justify-content: space-between;
 }
-
 .flow-y-bottom {
   margin-bottom: 1rem;
 }
-
+.flex-row-y-end {
+  align-items: flex-end;
+}
 .task__main-content {
   flex: 1 0 auto;
   justify-content: center;
@@ -167,16 +170,31 @@ h3 {
   display: none;
 }
 
+.taskEditInput {
+  background: transparent;
+  border: none;
+}
+
 .taskHeadingText {
   font-size: 1.9rem;
   line-height: 1.1;
   font-weight: 400;
+  color:#444444;
+}
+.taskHeadingText[data-is-done="true"], .taskBaseText[data-is-done="true"] {
+  text-decoration: line-through;
 }
 
+.taskHeadingText[data-is-done="false"], .taskBaseText[data-is-done="false"] {
+  text-decoration: none;
+}
+
+
 .taskBaseText {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.5;
   font-weight: 300;
+  color: #3f3f3f;
 }
 
 .taskDescription {
@@ -225,4 +243,32 @@ h3 {
 
 .task__button_toDo[data-is-done="false"]:hover {
   background-color: hsl(0, 1%, 72%);
+}
+
+.create-task {
+  background-color: hsl(0, 0%, 97%);
+  border-radius: 4px;
+  padding: 2rem  4rem;
+}
+.flex-row-y-center {
+  align-items: center;
+}
+.flex-center {
+  justify-content: center;
+}
+.dashed-border {
+  border: 2px dashed hsl(0, 1%, 72%);
+}
+.primary-bg {
+  background-color: hsl(0, 0%, 97%);
+}
+.min-height-task {
+  min-height: 6.5rem;
+}
+.create-task__text-style {
+  color: hsl(0, 1%, 72%);
+  font-size: 1.4rem;
+}
+.create-task__button-sizing {
+  padding: 1rem 2rem;
 }

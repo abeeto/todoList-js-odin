@@ -1,38 +1,30 @@
-function ElementsHelper() {
     
-    const createGenericElement = ({elementTagName, innerText, classList, attributesMap, clickEventCallBack}) => {
-        const element = document.createElement(elementTagName);
-        if (innerText){
-            element.innerText = innerText;
-        }
-        if (classList){
-            element.classList.add(...classList);
-        }
-        if (clickEventCallBack) {
-            element.addEventListener("click", clickEventCallBack);
-        }
-        if (attributesMap) {
-            for (const [key, value] of Object.entries(attributesMap)) {
-                element.setAttribute(key, value);
-            }
-        }
-        return element;
+const createGenericElement = ({elementTagName, innerText, classList, attributesMap, clickEventCallBack}) => {
+    const element = document.createElement(elementTagName);
+    if (innerText){
+        element.innerText = innerText;
     }
-    const createInputElement = ({fieldName, inputType}) => {
-        const inputNode = document.createElement("input");
-        inputNode.setAttribute("type", inputType);
-        inputNode.setAttribute("name", fieldName);
-        inputNode.setAttribute("id", `form-${fieldName}`);
-        return inputNode;
+    if (classList){
+        element.classList.add(...classList);
     }
-
-    const createLabelElement = (fieldName, innerText) => {
-        const labelNode = document.createElement("label");
-        labelNode.setAttribute("for",  `form-${fieldName}`);
-        labelNode.innerText = innerText;
-        return labelNode;
+    if (clickEventCallBack) {
+        element.addEventListener("click", clickEventCallBack);
     }
-
-    return {createGenericElement, createInputElement, createLabelElement}
+    if (attributesMap) {
+        for (const [key, value] of Object.entries(attributesMap)) {
+            element.setAttribute(key, value);
+        }
+    }
+    return element;
 }
-export default ElementsHelper();
+
+function wrapElements({wrapperTag, wrapperClassList, elementsToWrap}) {
+    const parent = document.createElement(wrapperTag)
+    parent.replaceChildren(...elementsToWrap);
+    if (wrapperClassList) {
+        parent.classList.add(...wrapperClassList);
+    }
+    return parent;
+}
+
+export default {createGenericElement, wrapElements};

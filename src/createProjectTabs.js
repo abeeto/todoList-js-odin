@@ -1,6 +1,6 @@
 import projects from "./ProjectsList";
 import { pubsub } from "./pubsub";
-import createTaskView from './createTaskViewByProject';
+import CreateTaskViewByProject from './CreateTaskViewByProject';
 import handleActiveProject from "./activeProject";
 import ElementsHelper from "./ElementsHelper";
 
@@ -11,7 +11,7 @@ function createProjectTabs() {
     projectTabHolderNode.addEventListener("click", (e) => {
         const projectName = e.target.innerText;
         handleActiveProject(e.target);
-        createTaskView(projectName);
+        CreateTaskViewByProject.createTaskView(projectName);
     });
 
     const renderProjectTab = (name) => {
