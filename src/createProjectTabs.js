@@ -1,7 +1,7 @@
 import projects from "./ProjectsList";
 import { pubsub } from "./pubsub";
 import CreateTaskViewByProject from './CreateTaskViewByProject';
-import handleActiveProject from "./activeProject";
+import ActiveProject from "./ActiveProject";
 import ElementsHelper from "./ElementsHelper";
 
 function createProjectTabs() {
@@ -10,7 +10,7 @@ function createProjectTabs() {
     projectTabHolderNode.id = "project-tabs-wrapper";
     projectTabHolderNode.addEventListener("click", (e) => {
         const projectName = e.target.innerText;
-        handleActiveProject(e.target);
+        ActiveProject.newActiveProject(e.target);
         CreateTaskViewByProject.createTaskView(projectName);
     });
 

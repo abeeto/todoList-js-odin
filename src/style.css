@@ -19,7 +19,13 @@
   font-weight: 400;
   font-style: normal;
 }
-
+@font-face {
+  font-family: "Roboto";
+  src: 
+    url("./Roboto/Roboto-Medium.ttf") format("truetype"),;
+  font-weight: 500;
+  font-style: normal;
+}
 :root {
   font-size: 16px;
 
@@ -243,6 +249,11 @@ h3 {
 
 .task__button_toDo[data-is-done="false"]:hover {
   background-color: hsl(0, 1%, 72%);
+}
+
+.active-project {
+  background-color: hsl(0, 45%, 61%);
+  font-weight: 500;
 }
 
 .create-task {

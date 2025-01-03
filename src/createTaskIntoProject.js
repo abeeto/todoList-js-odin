@@ -2,7 +2,7 @@ import ProjectsList from "./ProjectsList";
 import Task  from "./Task";
 import { pubsub } from "./pubsub";
 import CreateTaskViewByProject from "./CreateTaskViewByProject";
-import handleActiveProject from "./activeProject";
+import ActiveProject from "./ActiveProject";
 
 export default function createTaskIntoProject() {
     const form = document.querySelector("#task-form");
@@ -13,7 +13,7 @@ export default function createTaskIntoProject() {
     let {projectName} = Object.fromEntries(formDataObject.entries());
     const taskObj= new Task(taskUserValuesObject);
     if (projectName === "") {
-        projectName = "All Projects";
+        projectName = ActiveProject.getActiveProject();
     }
     if (ProjectsList.isEmpty()) {
         pubsub.publish("potentialNewProject", "All Projects");
@@ -27,5 +27,5 @@ export default function createTaskIntoProject() {
     const allProjects = Array.from(projectTabsHolderNode.children)
     const rightProjectTab = allProjects.filter((child) => child.dataset.projectName === projectName);
     console.log(rightProjectTab);
-    handleActiveProject(...rightProjectTab);
+    ActiveProject.newActiveProject(...rightProjectTab);
 }

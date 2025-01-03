@@ -1,9 +1,7 @@
 import CreateTaskViewByProject from "./CreateTaskViewByProject";
 import ElementsHelper from "./ElementsHelper";
 export default function createEditableTaskView({taskObj, projectName}) {
-    // take info out of the taskObj, return all of it as a form
     let taskInfoEditableItemsHolder = ElementsHelper.createGenericElement({elementTagName: "form", classList: ["task-editable-form", "flex", "flex-col"]})
-    // taskInfoEditableItemsHolder.classList.add();
     const taskInfoItems = [taskObj.getName(),   taskObj.getDueDate(), taskObj.getPriority(), taskObj.getDescription(),];
     let taskInfoSetters = [taskObj.setName, taskObj.setDueDate,  taskObj.setPriority, taskObj.setDescription,];
     taskInfoSetters = taskInfoSetters.map(taskInfoSetter => taskInfoSetter.bind(taskObj));
