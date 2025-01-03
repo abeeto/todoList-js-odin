@@ -4,17 +4,11 @@ import ElementsHelper from "./ElementsHelper";
 import createEditableTaskView from "./createEditableTaskView";
 
 export default function createTaskElement({taskObj, projectName}){
-    const taskHolderNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["wrapper", "wrapper-task", "flow-y-bottom", "flex"]})
-    const taskInfoItemsHolder = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["wrapper", "task__main-content", "flex", "flex-col"]})
     const taskTitleInfoNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-item-grow", "taskHeadingText"], innerText: taskObj.getName(), attributesMap: {"data-is-done": taskObj.getIsDone()}});
     const taskDescInfoNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-item-grow", "taskDescription", "taskBaseText", "flow-y-bottom"], innerText: taskObj.getDescription()});
     const taskPriorityNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "taskBaseText"], innerText: "Priority: " + taskObj.getPriority().toUpperCase()});
     const taskDueDateNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "taskBaseText"], innerText: "Due Date: " + taskObj.getDueDate(),  attributesMap: {"data-is-done": taskObj.getIsDone()}});
-    
-    const taskHeadingAndDueDateHolderNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-space-apart", "flow-bottom-y"]});
-    const taskActionsHolderNode = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flex-space-apart", "taskBaseText", "flow-bottom-y"]})
-    const updateTaskActionHolderNodes = ElementsHelper.createGenericElement({elementTagName: "div", classList: ["flex", "flow-bottom-y",]});
-    
+        
     const deleteTaskButton = ElementsHelper.createGenericElement({
         elementTagName: "button",
         innerText: "Delete Task", 
@@ -58,9 +52,26 @@ export default function createTaskElement({taskObj, projectName}){
         }
     })
 
-    updateTaskActionHolderNodes.replaceChildren(...[editTaskButton, deleteTaskButton])
-    taskActionsHolderNode.replaceChildren(...[expandButtonNode, updateTaskActionHolderNodes]);
-    taskInfoItemsHolder.replaceChildren(...[taskTitleInfoNode, taskDueDateNode,  taskPriorityNode, taskDescInfoNode, taskActionsHolderNode]);
-    taskHolderNode.replaceChildren(...[toggleTaskDoneButtonNode, taskInfoItemsHolder]);
+    const updateTaskActionHolderNodes = ElementsHelper.wrapElements({
+        wrapperTag: "div",
+        wrapperClassList: ["flow-y-bottom", "flex"],
+        elementsToWrap: [editTaskButton, deleteTaskButton]
+    });
+    const taskActionsHolderNode = ElementsHelper.wrapElements({
+        wrapperTag: "div",
+        wrapperClassList: ["flex", "flex-space-apart", "taskBaseText", "flow-bottom-y"],
+        elementsToWrap: [expandButtonNode, updateTaskActionHolderNodes]
+    });
+    const taskInfoItemsHolder = ElementsHelper.wrapElements({
+        wrapperTag: "div",
+        wrapperClassList: ["wrapper", "task__main-content", "flex", "flex-col"],
+        elementsToWrap: [taskTitleInfoNode, taskDueDateNode,  taskPriorityNode, taskDescInfoNode, taskActionsHolderNode]
+    });
+    const taskHolderNode = ElementsHelper.wrapElements({
+        wrapperTag: "div",
+        wrapperClassList: ["wrapper", "wrapper-task", "flow-y-bottom", "flex"],
+        elementsToWrap: [toggleTaskDoneButtonNode, taskInfoItemsHolder]
+    })
+
     return taskHolderNode;
 }

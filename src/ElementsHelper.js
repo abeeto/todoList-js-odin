@@ -19,11 +19,8 @@ const createGenericElement = ({elementTagName, innerText, classList, attributesM
 }
 
 function wrapElements({wrapperTag, wrapperClassList, elementsToWrap}) {
-    const parent = document.createElement(wrapperTag)
+    const parent = createGenericElement({elementTagName: wrapperTag, classList: wrapperClassList});
     parent.replaceChildren(...elementsToWrap);
-    if (wrapperClassList) {
-        parent.classList.add(...wrapperClassList);
-    }
     return parent;
 }
 
