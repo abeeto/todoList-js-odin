@@ -1,74 +1,92 @@
 @font-face {
-  font-family: 'Afacad Flux';
-  src: url('./Afacad_Flux/AfacadFlux-VariableFont_slnt\,wght.ttf') format('truetype');
+  font-family: "Afacad Flux";
+  src: url("./Afacad_Flux/AfacadFlux-VariableFont_slnt\,wght.ttf")
+    format("truetype");
   font-weight: 500 400 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Roboto";
-  src: 
-    url("./Roboto/Roboto-Light.ttf") format("truetype"),;
+  src: url("./Roboto/Roboto-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Roboto";
-  src: 
-    url("./Roboto/Roboto-Regular.ttf") format("truetype"),;
+  src: url("./Roboto/Roboto-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Roboto";
-  src: 
-    url("./Roboto/Roboto-Medium.ttf") format("truetype"),;
+  src: url("./Roboto/Roboto-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 :root {
   font-size: 16px;
-
 }
 /* || Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
-*, *::before, *::after {
-    box-sizing: border-box;
-  }
-  
-  * {
-    margin: 0;
-  }
-  
-  body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-  }
-  
-  input, button, textarea, select {
-    font: inherit;
-  }
-  
-  p, h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
-  }
-  
-  p {
-    text-wrap: pretty;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    text-wrap: balance;
-  }
-  
-  #root, #__next {
-    isolation: isolate;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
 
 /* || class selectors: block level */
 /* TODO: follow CUBE CSS methodology */
@@ -78,8 +96,7 @@
   --400: 1rem;
   --500: calc(1rem * 1.33);
   --600: calc(1rem * 1.77);
-  --700: calc(1rem * 2.40);
-
+  --700: calc(1rem * 2.4);
 }
 
 body {
@@ -144,7 +161,7 @@ h3 {
   content: "";
   background-color: #c7c7c7;
   top: 0;
-  left:0;
+  left: 0;
   height: 100%;
   width: 8px;
   border-radius: 4px 0 0 4px;
@@ -194,16 +211,17 @@ h3 {
   font-size: 1.9rem;
   line-height: 1.1;
   font-weight: 400;
-  color:#444444;
+  color: #444444;
 }
-.taskHeadingText[data-is-done="true"], .taskBaseText[data-is-done="true"] {
+.taskHeadingText[data-is-done="true"],
+.taskBaseText[data-is-done="true"] {
   text-decoration: line-through;
 }
 
-.taskHeadingText[data-is-done="false"], .taskBaseText[data-is-done="false"] {
+.taskHeadingText[data-is-done="false"],
+.taskBaseText[data-is-done="false"] {
   text-decoration: none;
 }
-
 
 .taskBaseText {
   font-size: 1rem;
@@ -249,10 +267,10 @@ h3 {
   background-color: hsl(0, 45%, 60%);
 }
 
-.task__button_toDo[data-is-done="true"]{
+.task__button_toDo[data-is-done="true"] {
   background-color: #ba4a4a;
 }
-.task__button_toDo[data-is-done="false"]{
+.task__button_toDo[data-is-done="false"] {
   background-color: #9e9c9c;
 }
 
@@ -268,7 +286,7 @@ h3 {
 .create-task {
   background-color: hsl(0, 0%, 97%);
   border-radius: 4px;
-  padding: 2rem  4rem;
+  padding: 2rem 4rem;
 }
 .flex-row-y-center {
   align-items: center;

@@ -1,68 +1,68 @@
-import { v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { pubsub } from "./pubsub";
 export default class Task {
-    #name;
-    #description;
-    #dueDate;
-    #priority;
-    #id;
-    #isDone;
-    constructor({name, description, dueDate, priority}) {
-        this.#name = name;
-        this.#description = description;
-        this.#dueDate = dueDate;
-        this.#priority = priority;
-        this.#id = uuidv4();
-        this.#isDone = false;
-    }
-    
-    getId() {
-        return this.#id;
-    }
+  #name;
+  #description;
+  #dueDate;
+  #priority;
+  #id;
+  #isDone;
+  constructor({ name, description, dueDate, priority }) {
+    this.#name = name;
+    this.#description = description;
+    this.#dueDate = dueDate;
+    this.#priority = priority;
+    this.#id = uuidv4();
+    this.#isDone = false;
+  }
 
-    getName() {
-        return this.#name;
-    }
+  getId() {
+    return this.#id;
+  }
 
-    setName(name) {
-        this.#name = name;
-        pubsub.publish("anyChangeInTask");
-    }
+  getName() {
+    return this.#name;
+  }
 
-    getDescription() {
-        return this.#description;
-    }
+  setName(name) {
+    this.#name = name;
+    pubsub.publish("anyChangeInTask");
+  }
 
-    setDescription(description) {
-        this.#description = description;
-        pubsub.publish("anyChangeInTask");
-    }
+  getDescription() {
+    return this.#description;
+  }
 
-    getDueDate() {
-        return this.#dueDate;
-    }
+  setDescription(description) {
+    this.#description = description;
+    pubsub.publish("anyChangeInTask");
+  }
 
-    setDueDate(dueDate) {
-        this.#dueDate = dueDate;
-        pubsub.publish("anyChangeInTask");
-    }
+  getDueDate() {
+    return this.#dueDate;
+  }
 
-    toggleIsDone(){
-        this.#isDone = !this.#isDone;
-    }
-    getIsDone(){
-        return this.#isDone;
-    }
+  setDueDate(dueDate) {
+    this.#dueDate = dueDate;
+    pubsub.publish("anyChangeInTask");
+  }
 
-    getPriority() {
-        return this.#priority;
-    }
+  toggleIsDone() {
+    this.#isDone = !this.#isDone;
+  }
+  getIsDone() {
+    return this.#isDone;
+  }
 
-    setPriority(priority) {
-        this.#priority = priority;
-    }
+  getPriority() {
+    return this.#priority;
+  }
 
-    toString() {
-        return `ID: ${this.#id} NAME: ${this.#name} DESC: ${this.#description} DUE: ${this.#dueDate} PRIORITY: ${this.#priority}`
-    }
+  setPriority(priority) {
+    this.#priority = priority;
+  }
+
+  toString() {
+    return `ID: ${this.#id} NAME: ${this.#name} DESC: ${this.#description} DUE: ${this.#dueDate} PRIORITY: ${this.#priority}`;
+  }
 }
