@@ -71,7 +71,9 @@ export default function createTaskElement({taskObj, projectName}){
         wrapperTag: "div",
         wrapperClassList: ["wrapper", "wrapper-task", "flow-y-bottom", "flex"],
         elementsToWrap: [toggleTaskDoneButtonNode, taskInfoItemsHolder]
-    })
+    });
+    taskHolderNode.dataset.priority = taskObj.getPriority();
+
 
     return taskHolderNode;
 }

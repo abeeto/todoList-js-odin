@@ -22,11 +22,20 @@ export default function createTaskForm() {
         classList: ["taskBaseText", "max-content-width"],
         attributesMap: {"name": "dueDate", "type": "date"}
     });
-    const priorityInput = ElementsHelper.createGenericElement({
-        elementTagName: "input",
+    const priorityInputOptions = ["high", "medium", "low"].map(priority => {
+        const optionToAdd = ElementsHelper.createGenericElement({
+            elementTagName: "option",
+            attributesMap: {"value": priority},
+            innerText: priority
+        })
+        return optionToAdd;
+    })
+    const priorityInput = ElementsHelper.wrapElements({
+        wrapperTag: "select",
         classList: ["taskBaseText", "taskEditInput"],
-        attributesMap: {"placeholder": "Priority Level", "name": "priority"},
+        elementsToWrap: priorityInputOptions,
     });
+    priorityInput.name = "priority";
     const projectSelectInput = ElementsHelper.createGenericElement({
         elementTagName: "input",
         classList: ["taskBaseText", "taskEditInput"],

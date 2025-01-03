@@ -130,6 +130,15 @@ h3 {
   border-radius: 4px;
 }
 
+.wrapper-task[data-priority="high"]::before {
+  background-color: red;
+}
+.wrapper-task[data-priority="medium"]::before {
+  background-color: orange;
+}
+.wrapper-task[data-priority="low"]::before {
+  background-color: green;
+}
 .wrapper-task::before {
   position: absolute;
   content: "";

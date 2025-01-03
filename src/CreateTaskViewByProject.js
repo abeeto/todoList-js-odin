@@ -15,7 +15,9 @@ function getTaskViewHolderNode(){
 function createTaskView(projectName) {
     const taskViewHolderNode = getTaskViewHolderNode(); 
     const tasksToRender = ProjectsList.getAllTasksOfProject(projectName);
-    const taskNodesToAppend = tasksToRender.map(taskObj => createTaskElement({taskObj, projectName}));
+    const taskNodesToAppend = tasksToRender.map(taskObj => {
+        return createTaskElement({taskObj, projectName});
+    });
     taskViewHolderNode.replaceChildren(...taskNodesToAppend);
 }
 
