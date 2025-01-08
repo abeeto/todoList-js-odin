@@ -1,13 +1,11 @@
-const TaskDictionary = {};
+const TaskList = {};
 
 const addTaskToDictionary = ({ id, taskObj }) => {
-  TaskDictionary[id] = taskObj;
+  TaskList[id] = taskObj;
 };
 
 const getTaskById = (id) => {
-  return TaskDictionary[id];
+  return TaskList[id];
 };
-
-
 
 export default { addTaskToDictionary, getTaskById };
