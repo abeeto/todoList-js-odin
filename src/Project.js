@@ -1,11 +1,11 @@
 import { pubsub } from "./pubsub";
 export default class Project {
   #name;
-  #taskMap;
+  #taskIdList;
 
   constructor(projectName) {
     this.#name = projectName;
-    this.#taskMap = new Map();
+    this.#taskIdList = [];
     pubsub.subscribe("deleteTaskIfPresent", this.deleteTask.bind(this));
   }
 
@@ -14,26 +14,14 @@ export default class Project {
   }
 
   getAllTasks() {
-    let tasks = [];
-    for (const value of this.#taskMap.values()) {
-      tasks.push(value);
-    }
-    return tasks;
-  }
-  getAllTaskIds() {
-    let tasksIds = [];
-    for (const value of this.#taskMap.values()) {
-      tasksIds.push(value.getId());
-    }
-    return tasksIds;
-  }
-  addTask(taskObj) {
-    this.#taskMap.set(taskObj.getId(), taskObj);
+    return this.#taskIdList;
   }
 
-  deleteTask(taskObj) {
-    if (this.#taskMap.has(taskObj.getId())) {
-      this.#taskMap.delete(taskObj.getId());
-    }
+  addTask(taskId) {
+    this.#taskIdList.push(taskId);
+  }
+
+  deleteTask(taskId) {
+    this.#taskIdList = this.#taskIdList.filter((val) => val !== taskId);
   }
 }

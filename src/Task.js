@@ -1,23 +1,16 @@
-import { v4 as uuidv4 } from "uuid";
 import { pubsub } from "./pubsub";
 export default class Task {
   #name;
   #description;
   #dueDate;
   #priority;
-  #id;
   #isDone;
   constructor({ name, description, dueDate, priority }) {
     this.#name = name;
     this.#description = description;
     this.#dueDate = dueDate;
     this.#priority = priority;
-    this.#id = uuidv4();
     this.#isDone = false;
-  }
-
-  getId() {
-    return this.#id;
   }
 
   getName() {

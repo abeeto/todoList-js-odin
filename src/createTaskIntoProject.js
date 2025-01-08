@@ -11,7 +11,7 @@ export default function createTaskIntoProject() {
   const taskUserValuesObject = Object.fromEntries(formDataObject.entries());
   let { projectName } = Object.fromEntries(formDataObject.entries());
   const taskObj = new Task(taskUserValuesObject);
-  localStorage.setItem(taskObj.getId(), taskObj.toStringObj());
+  localStorage.setItem(taskObj.getIsDone(), taskObj.toStringObj());
   if (projectName === "") {
     projectName = ActiveProject.getActiveProject();
   }
