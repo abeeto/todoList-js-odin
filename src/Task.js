@@ -62,7 +62,7 @@ export default class Task {
     this.#priority = priority;
   }
 
-  toString() {
-    return `ID: ${this.#id} NAME: ${this.#name} DESC: ${this.#description} DUE: ${this.#dueDate} PRIORITY: ${this.#priority}`;
+  toStringObj() {
+    return `{"name": "${this.#name}", "dueDate": "${this.#dueDate}", "description": "${this.#description}", "priority": "${this.#priority}", "isDone": "${this.#isDone}"}`;
   }
 }

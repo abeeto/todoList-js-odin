@@ -73,6 +73,7 @@ export default function createEditableTaskView({ taskObj, projectName }) {
       console.log(newTaskInfoFormDataValues[i]);
       taskInfoSetters[i](newTaskInfoFormDataValues[i]);
     }
+    localStorage.setItem(taskObj.getId(), taskObj.toStringObj());
     CreateTaskViewByProject.createTaskView(projectName);
   });
 

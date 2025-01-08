@@ -9,9 +9,9 @@ export default function createTaskIntoProject() {
   const formDataObject = new FormData(form);
 
   const taskUserValuesObject = Object.fromEntries(formDataObject.entries());
-  console.log(taskUserValuesObject);
   let { projectName } = Object.fromEntries(formDataObject.entries());
   const taskObj = new Task(taskUserValuesObject);
+  localStorage.setItem(taskObj.getId(), taskObj.toStringObj());
   if (projectName === "") {
     projectName = ActiveProject.getActiveProject();
   }
@@ -28,6 +28,5 @@ export default function createTaskIntoProject() {
   const rightProjectTab = allProjects.filter(
     (child) => child.dataset.projectName === projectName,
   );
-  console.log(rightProjectTab);
   ActiveProject.newActiveProject(...rightProjectTab);
 }

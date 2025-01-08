@@ -2,6 +2,7 @@ import { pubsub } from "./pubsub";
 import CreateTaskViewByProject from "./CreateTaskViewByProject";
 import ElementsHelper from "./ElementsHelper";
 import createEditableTaskView from "./createEditableTaskView";
+import ProjectsList from "./ProjectsList";
 
 export default function createTaskElement({ taskObj, projectName }) {
   const taskTitleInfoNode = ElementsHelper.createGenericElement({
@@ -39,6 +40,8 @@ export default function createTaskElement({ taskObj, projectName }) {
     clickEventCallBack: () => {
       pubsub.publish("deleteTaskIfPresent", taskObj);
       CreateTaskViewByProject.createTaskView(projectName);
+      ProjectsList.updateLocalStorageProjectsList();
+      localStorage.removeItem(taskObj.getId());
     },
   });
 
@@ -58,6 +61,7 @@ export default function createTaskElement({ taskObj, projectName }) {
     clickEventCallBack: function () {
       this.dataset.isDone = taskObj.getIsDone() ? "false" : "true";
       taskObj.toggleIsDone(this.dataset.isDone === "true");
+      localStorage.setItem(taskObj.getId(), taskObj.toStringObj());
       CreateTaskViewByProject.createTaskView(projectName);
     },
   });

@@ -48,4 +48,4 @@ function createProjectTabs() {
   return projectTabHolderNode;
 }
 
-export default createProjectTabs();
+export default { createProjectTabs, renderProjectTabs };

@@ -15,12 +15,18 @@ export default class Project {
 
   getAllTasks() {
     let tasks = [];
-    for (const [key, value] of this.#taskMap) {
+    for (const value of this.#taskMap.values()) {
       tasks.push(value);
     }
     return tasks;
   }
-
+  getAllTaskIds() {
+    let tasksIds = [];
+    for (const value of this.#taskMap.values()) {
+      tasksIds.push(value.getId());
+    }
+    return tasksIds;
+  }
   addTask(taskObj) {
     this.#taskMap.set(taskObj.getId(), taskObj);
   }
