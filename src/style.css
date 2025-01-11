@@ -1,0 +1,325 @@
+@font-face {
+  font-family: "Afacad Flux";
+  src: url("./Afacad_Flux/AfacadFlux-VariableFont_slnt\,wght.ttf")
+    format("truetype");
+  font-weight: 500 400 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./Roboto/Roboto-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./Roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./Roboto/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+:root {
+  font-size: 16px;
+}
+/* || Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* || class selectors: block level */
+/* TODO: follow CUBE CSS methodology */
+:root {
+  font-size: 16px;
+  --300: calc(1rem * 0.8);
+  --400: 1rem;
+  --500: calc(1rem * 1.33);
+  --600: calc(1rem * 1.77);
+  --700: calc(1rem * 2.4);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+  margin-top: var(--600);
+  /* background-color: hsl(0, 45%, 51%); */
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+.wrapper {
+  max-width: 55rem;
+  margin-inline: auto;
+}
+.wrapper-projects {
+  min-height: 45px;
+  background-color: hsl(0, 45%, 57%);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-inline: 1rem;
+}
+
+.wrapper-projects > * {
+  background-color: hsla(0, 45%, 50%, 0.9);
+  color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 4px;
+  flex: 0 1 auto;
+  font-weight: 400;
+  margin-right: 1rem;
+}
+
+.wrapper-projects > .empty-project-note {
+  background-color: transparent;
+  color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 4px;
+  flex: 1 0 auto;
+  font-weight: 400;
+  margin-right: 1rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.wrapper-task {
+  position: relative;
+  padding: 1rem 2rem;
+  min-height: 5rem;
+  background-color: hsl(0, 0%, 97%);
+  border-radius: 4px;
+}
+
+.wrapper-task[data-priority="high"]::before {
+  background-color: red;
+}
+.wrapper-task[data-priority="medium"]::before {
+  background-color: orange;
+}
+.wrapper-task[data-priority="low"]::before {
+  background-color: green;
+}
+.wrapper-task::before {
+  position: absolute;
+  content: "";
+  background-color: #c7c7c7;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 8px;
+  border-radius: 4px 0 0 4px;
+}
+.flex-item-grow {
+  flex: 1 0 auto;
+}
+.max-content-width {
+  width: max-content;
+}
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-space-apart {
+  justify-content: space-between;
+}
+.flow-y-bottom {
+  margin-bottom: 1rem;
+}
+.flex-row-y-end {
+  align-items: flex-end;
+}
+.task__main-content {
+  flex: 1 0 auto;
+  justify-content: center;
+  padding-inline: 2rem;
+  max-width: 100%;
+}
+
+.wrapper-task {
+  align-items: center;
+}
+
+.wrapper-task *[data-is-hidden="true"] {
+  display: none;
+}
+
+.taskEditInput {
+  background: transparent;
+  border: none;
+}
+
+.taskHeadingText {
+  font-size: 1.9rem;
+  line-height: 1.1;
+  font-weight: 400;
+  color: #444444;
+}
+.taskHeadingText[data-is-done="true"],
+.taskBaseText[data-is-done="true"] {
+  text-decoration: line-through;
+}
+
+.taskHeadingText[data-is-done="false"],
+.taskBaseText[data-is-done="false"] {
+  text-decoration: none;
+}
+
+.taskBaseText {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #3f3f3f;
+}
+
+.taskDescription {
+  padding: 1.2rem;
+  background-color: hsl(218, 92%, 95%);
+  border-radius: 4px;
+  min-height: 8rem;
+  color: #a1a1a1;
+}
+
+.task__button {
+  font-size: 1rem;
+}
+
+.task__button_toDo {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.task__button_toDo::after {
+  position: absolute;
+  top: 15%;
+  left: 35%;
+  content: "";
+  height: 30px;
+  width: 15px;
+  border: solid #f7f7f7;
+  border-width: 0 5px 5px 0;
+  transform: rotate(45deg);
+}
+
+.task__button_toDo[data-is-done="true"]:hover {
+  background-color: hsl(0, 45%, 60%);
+}
+
+.task__button_toDo[data-is-done="true"] {
+  background-color: #ba4a4a;
+}
+.task__button_toDo[data-is-done="false"] {
+  background-color: #9e9c9c;
+}
+
+.task__button_toDo[data-is-done="false"]:hover {
+  background-color: hsl(0, 1%, 72%);
+}
+
+.active-project {
+  background-color: hsla(0, 47%, 39%, 0.9);
+  font-weight: 500;
+}
+
+.create-task {
+  background-color: hsl(0, 0%, 97%);
+  border-radius: 4px;
+  padding: 2rem 4rem;
+}
+.flex-row-y-center {
+  align-items: center;
+}
+.flex-center {
+  justify-content: center;
+}
+.dashed-border {
+  border: 2px dashed hsl(0, 1%, 72%);
+}
+.primary-bg {
+  background-color: hsl(0, 0%, 97%);
+}
+.min-height-task {
+  min-height: 6.5rem;
+}
+.create-task__text-style {
+  color: hsl(0, 1%, 72%);
+  font-size: 1.4rem;
+}
+.create-task__button-sizing {
+  padding: 1rem 2rem;
+}
