@@ -1,4 +1,5 @@
 import ProjectsList from "./ProjectsList";
+import TaskList from "./TaskList";
 import createTaskElement from "./createTaskElement";
 
 function getTaskViewHolderNode() {
@@ -14,8 +15,12 @@ function getTaskViewHolderNode() {
 
 function createTaskView(projectName) {
   const taskViewHolderNode = getTaskViewHolderNode();
-  const tasksToRender = ProjectsList.getAllTasksOfProject(projectName);
-  const taskNodesToAppend = tasksToRender.map((taskObj) => {
+  const taskIds = ProjectsList.getAllTaskIdsOfProject(projectName);
+  const tasks = taskIds.map((id) => {
+    const taskObj = TaskList.getTaskById(id);
+    return taskObj;
+  });
+  const taskNodesToAppend = tasks.map((taskObj) => {
     return createTaskElement({ taskObj, projectName });
   });
   taskViewHolderNode.replaceChildren(...taskNodesToAppend);

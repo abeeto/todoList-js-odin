@@ -32,6 +32,9 @@ const renderProjectTabs = () => {
     );
   } else {
     const projectTabs = allProjectNames.map((name) => renderProjectTab(name));
+    if (ActiveProject.getActiveProject() === undefined || null) {
+      ActiveProject.newActiveProject(projectTabs[0]);
+    }
     projectTabHolderNode.replaceChildren(...projectTabs);
   }
 };

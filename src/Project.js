@@ -1,27 +1,35 @@
 import { pubsub } from "./pubsub";
 export default class Project {
   #name;
-  #taskIdList;
+  #taskIdSet;
 
   constructor(projectName) {
     this.#name = projectName;
-    this.#taskIdList = [];
-    pubsub.subscribe("deleteTaskIfPresent", this.deleteTask.bind(this));
+    this.#taskIdSet = new Set();
+    pubsub.subscribe("deleteTaskIfPresent", (taskId) => {
+      this.deleteTask(taskId);
+    });
   }
 
   getName() {
     return this.#name;
   }
 
-  getAllTasks() {
-    return this.#taskIdList;
+  getAllTaskIds() {
+    return Array.from(this.#taskIdSet);
   }
 
-  addTask(taskId) {
-    this.#taskIdList.push(taskId);
+  setAllTaskIds(taskIdList) {
+    this.#taskIdSet = new Set(taskIdList);
+  }
+
+  addTaskId(taskId) {
+    this.#taskIdSet.add(taskId);
   }
 
   deleteTask(taskId) {
-    this.#taskIdList = this.#taskIdList.filter((val) => val !== taskId);
+    console.log(`${this.getName()} is deleting ${taskId}`);
+    this.#taskIdSet.delete(taskId);
+    pubsub.publish("projectHasDeletedTask");
   }
 }

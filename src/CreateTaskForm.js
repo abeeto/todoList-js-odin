@@ -10,7 +10,12 @@ export default function createTaskForm() {
   const nameInput = ElementsHelper.createGenericElement({
     elementTagName: "input",
     classList: ["taskHeadingText", "taskEditInput"],
-    attributesMap: { placeholder: "Task Title", type: "text", name: "name" },
+    attributesMap: {
+      placeholder: "Task Title",
+      type: "text",
+      name: "name",
+      required: true,
+    },
   });
   const descriptionTextArea = ElementsHelper.createGenericElement({
     elementTagName: "textarea",
@@ -29,7 +34,7 @@ export default function createTaskForm() {
   const dueDateInput = ElementsHelper.createGenericElement({
     elementTagName: "input",
     classList: ["taskBaseText", "max-content-width"],
-    attributesMap: { name: "dueDate", type: "date" },
+    attributesMap: { name: "dueDate", type: "date", required: true },
   });
   const priorityInputOptions = ["high", "medium", "low"].map((priority) => {
     const optionToAdd = ElementsHelper.createGenericElement({
@@ -42,6 +47,7 @@ export default function createTaskForm() {
   const priorityInput = ElementsHelper.wrapElements({
     wrapperTag: "select",
     classList: ["taskBaseText", "taskEditInput"],
+    attributesMap: { required: true },
     elementsToWrap: priorityInputOptions,
   });
   priorityInput.name = "priority";

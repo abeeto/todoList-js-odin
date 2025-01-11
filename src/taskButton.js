@@ -26,7 +26,6 @@ let taskButton = ElementsHelper.createGenericElement({
     "min-height-task",
   ],
   clickEventCallBack: function () {
-    console.log("CLICKED!");
     const newElement = ElementsHelper.wrapElements({
       wrapperTag: "div",
       wrapperClassList: ["create-task"],

@@ -3,6 +3,7 @@ import Task from "./Task";
 import { pubsub } from "./pubsub";
 import CreateTaskViewByProject from "./CreateTaskViewByProject";
 import ActiveProject from "./ActiveProject";
+import TaskList from "./TaskList";
 
 export default function createTaskIntoProject() {
   const form = document.querySelector("#task-form");
@@ -11,21 +12,29 @@ export default function createTaskIntoProject() {
   const taskUserValuesObject = Object.fromEntries(formDataObject.entries());
   let { projectName } = Object.fromEntries(formDataObject.entries());
   const taskObj = new Task(taskUserValuesObject);
-  localStorage.setItem(taskObj.getIsDone(), taskObj.toStringObj());
+  pubsub.publish("taskCreated", taskObj);
+
+  const taskId = TaskList.getIdByTask(taskObj);
   if (projectName === "") {
-    projectName = ActiveProject.getActiveProject();
+    projectName = ActiveProject.getActiveProject() || "All Projects";
   }
   if (ProjectsList.isEmpty()) {
     pubsub.publish("potentialNewProject", "All Projects");
   }
   pubsub.publish("potentialNewProject", projectName);
-  pubsub.publish("addTaskToProject", { taskObj, projectName });
-  pubsub.publish("addTaskToProject", { taskObj, projectName: "All Projects" });
+  pubsub.publish("addTaskToProject", {
+    taskId: taskId,
+    projectName: projectName,
+  });
+  pubsub.publish("addTaskToProject", {
+    taskId: taskId,
+    projectName: "All Projects",
+  });
   CreateTaskViewByProject.createTaskView(projectName);
 
   const projectTabsHolderNode = document.querySelector("#project-tabs-wrapper");
   const allProjects = Array.from(projectTabsHolderNode.children);
-  const rightProjectTab = allProjects.filter(
+  let rightProjectTab = allProjects.filter(
     (child) => child.dataset.projectName === projectName,
   );
   ActiveProject.newActiveProject(...rightProjectTab);

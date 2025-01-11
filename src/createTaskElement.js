@@ -2,7 +2,7 @@ import { pubsub } from "./pubsub";
 import CreateTaskViewByProject from "./CreateTaskViewByProject";
 import ElementsHelper from "./ElementsHelper";
 import createEditableTaskView from "./createEditableTaskView";
-import ProjectsList from "./ProjectsList";
+import TaskList from "./TaskList";
 
 export default function createTaskElement({ taskObj, projectName }) {
   const taskTitleInfoNode = ElementsHelper.createGenericElement({
@@ -38,10 +38,8 @@ export default function createTaskElement({ taskObj, projectName }) {
     elementTagName: "button",
     innerText: "Delete Task",
     clickEventCallBack: () => {
-      pubsub.publish("deleteTaskIfPresent", taskObj);
+      pubsub.publish("deleteTaskIfPresent", TaskList.getIdByTask(taskObj));
       CreateTaskViewByProject.createTaskView(projectName);
-      ProjectsList.updateLocalStorageProjectsList();
-      localStorage.removeItem(taskObj.getId());
     },
   });
 
@@ -49,7 +47,7 @@ export default function createTaskElement({ taskObj, projectName }) {
     elementTagName: "button",
     innerText: "Edit Task",
     clickEventCallBack: () => {
-      const newEditTask = createEditableTaskView({ taskObj, projectName });
+      const newEditTask = createEditableTaskView({ taskObj });
       taskInfoItemsHolder.replaceChildren(newEditTask);
     },
   });
@@ -61,7 +59,6 @@ export default function createTaskElement({ taskObj, projectName }) {
     clickEventCallBack: function () {
       this.dataset.isDone = taskObj.getIsDone() ? "false" : "true";
       taskObj.toggleIsDone(this.dataset.isDone === "true");
-      localStorage.setItem(taskObj.getId(), taskObj.toStringObj());
       CreateTaskViewByProject.createTaskView(projectName);
     },
   });

@@ -1,6 +1,7 @@
 import CreateTaskViewByProject from "./CreateTaskViewByProject";
 import ElementsHelper from "./ElementsHelper";
-export default function createEditableTaskView({ taskObj, projectName }) {
+import ActiveProject from "./ActiveProject";
+export default function createEditableTaskView({ taskObj }) {
   let taskInfoEditableItemsHolder = ElementsHelper.createGenericElement({
     elementTagName: "form",
     classList: ["task-editable-form", "flex", "flex-col"],
@@ -70,11 +71,9 @@ export default function createEditableTaskView({ taskObj, projectName }) {
     const newTaskInfoFormData = new FormData(taskInfoEditableItemsHolder);
     const newTaskInfoFormDataValues = newTaskInfoFormData.values().toArray();
     for (let i = 0; i < taskInfoSetters.length; i++) {
-      console.log(newTaskInfoFormDataValues[i]);
       taskInfoSetters[i](newTaskInfoFormDataValues[i]);
     }
-    localStorage.setItem(taskObj.getId(), taskObj.toStringObj());
-    CreateTaskViewByProject.createTaskView(projectName);
+    CreateTaskViewByProject.createTaskView(ActiveProject.getActiveProject());
   });
 
   return taskInfoEditableItemsHolder;

@@ -2,7 +2,6 @@ let activeProjectHolder = [];
 
 function newActiveProject(projectNode) {
   let previousProjectNode = activeProjectHolder.pop();
-  console.log(previousProjectNode);
   if (projectNode) {
     activeProjectHolder.push(projectNode);
   }

@@ -5,12 +5,12 @@ export default class Task {
   #dueDate;
   #priority;
   #isDone;
-  constructor({ name, description, dueDate, priority }) {
+  constructor({ name, description, dueDate, priority, isDone }) {
     this.#name = name;
     this.#description = description;
     this.#dueDate = dueDate;
     this.#priority = priority;
-    this.#isDone = false;
+    this.#isDone = isDone === "true" ? true : false;
   }
 
   getName() {
@@ -42,6 +42,7 @@ export default class Task {
 
   toggleIsDone() {
     this.#isDone = !this.#isDone;
+    pubsub.publish("anyChangeInTask");
   }
   getIsDone() {
     return this.#isDone;
